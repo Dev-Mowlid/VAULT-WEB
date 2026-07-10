@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, render_template, request,url_for
-from auth import setup_masterpasswd, verify_masterpasswd, derive_key, is_first_run
+from auth import setup_masterpasswd, verify_masterpasswd, is_first_run
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Length
@@ -11,13 +11,24 @@ from utils import generate_password
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "akdjfadsjfifelkjne"
+app.config['SESSION_PERMANENT'] = False
 
 
 
-class MakeForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired(),Length(min=8, max=100, message='password has to fall btw %(min)s and %(max)s') ,EqualTo('confirm', message='Passwords must match!.')])
+class Signup(FlaskForm):
+    password = PasswordField(
+        'Password', validators=[DataRequired(),Length(min=8, max=100, 
+        message='password has to fall btw %(min)s and %(max)s') ,
+        EqualTo('confirm', message='Passwords must match!.')]
+    )
     confirm = PasswordField('Confirm', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    create = SubmitField('Create')
+
+class Login(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    unlock = SubmitField('Unlock')
+
+    
 
 
 @app.route('/', methods=['GET'])
@@ -31,32 +42,34 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = MakeForm()
+    signup = Signup()
+    login = Login()
     state = is_first_run()
-    if form.validate_on_submit():
-        if state:
-            passwd = form.password.data 
-            setup_masterpasswd(passwd=passwd)
-            session['password'] = passwd
+    if signup.validate_on_submit():
+        passwd = signup.password.data 
+        setup_masterpasswd(passwd=passwd)
+        session['password'] = passwd
+        return redirect(url_for('vault'))
+    if login.validate_on_submit():
+        passwd = login.password.data 
+        if verify_masterpasswd(passwd=passwd):
+            session["password"] = passwd
             return redirect(url_for('vault'))
         else:
-            passwd = form.password.data 
-            if verify_masterpasswd(passwd=passwd):
-                session["password"] = passwd
-                return redirect(url_for('vault'))
-            else:
-                return redirect(url_for('login'))
+            return render_template('login.html', login=login ,state=state,signup=signup, msg='Incorrect password!.')
     
-    return render_template('login.html', state=state)
+    return render_template('login.html',state=state, login=login, signup=signup)
 
 @app.route('/vault', methods=['GET'])
 def vault():
     passwd = session.get("password")
-    if passwd:
-        entries = get_all_entries(passwd=passwd)
-        return render_template('vault.html', entries=entries)
-    else:
+    if not passwd:
         return redirect(url_for('login'))
+    if not is_first_run() == False:
+        session.clear()
+        return redirect(url_for('login'))
+    entries = get_all_entries(passwd=passwd)
+    return render_template('vault.html', entries=entries)
 
 
 @app.route('/add', methods=['POST'])

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/login.css">
+</head>
+
+<body>
+    <div class="loginwin">
+        {% if state%} 
+        <h1>Create Vault</h1>
+        <p>Set your master password to get started</p>
+        <form method="POST">
+            {{signup.hidden_tag()}}
+            {{signup.password.label}}{{signup.password()}}
+            {{signup.confirm.label}}{{signup.confirm()}}
+            {{signup.create()}}
+        </form>
+        {% else %}
+        <h1>Welcome Back</h1>
+        <p>Enter your master password to unlock</p>
+        <form method="POST">
+            {{login.hidden_tag()}}
+            {{login.password.label}}{{login.password()}}
+            {{login.unlock()}}
+        </form>
+        {%endif%}
+    </div>
+</body>
+
+</html>
+
+
+
+
+

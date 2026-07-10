@@ -1,0 +1,326 @@
+.pm-root {
+    display: flex;
+    height: 580px;
+    background: #0f0f0f;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+}
+
+.pm-sidebar {
+    width: 200px;
+    min-width: 200px;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-right: 1px solid #2a2a2a;
+}
+
+.pm-sidebar-top {
+    padding: 24px 16px 16px;
+}
+
+.pm-logo {
+    color: #c8f04f;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pm-logo i {
+    font-size: 18px;
+}
+
+.pm-tagline {
+    color: #444;
+    font-size: 11px;
+    margin-bottom: 24px;
+}
+
+.pm-divider {
+    height: 1px;
+    background: #2a2a2a;
+    margin: 0 16px 16px;
+}
+
+.pm-btn-add {
+    margin: 0 12px;
+    background: #c8f04f;
+    color: #0f0f0f;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.pm-btn-add:hover {
+    background: #b0d93e;
+}
+
+.pm-spacer {
+    flex: 1;
+}
+
+.pm-btn-lock {
+    margin: 12px;
+    background: transparent;
+    color: #555;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pm-btn-lock:hover {
+    color: #888;
+    border-color: #444;
+}
+
+.pm-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0f0f0f;
+}
+
+.pm-search-bar {
+    padding: 16px 20px;
+    border-bottom: 1px solid #1e1e1e;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pm-search {
+    flex: 1;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    outline: none;
+}
+
+.pm-entries {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pm-entry {
+    background: #1a1a1a;
+    border: 1px solid #242424;
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.pm-entry:hover {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+.pm-entry.selected {
+    background: #1e2a10;
+    border-color: #4a6a1a;
+    border-left: 3px solid #c8f04f;
+}
+
+.pm-entry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pm-service {
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pm-username {
+    color: #555;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.pm-copy-btn {
+    background: #252525;
+    border: 1px solid #333;
+    color: #888;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.pm-copy-btn:hover {
+    background: #2e2e2e;
+    color: #aaa;
+}
+
+.pm-entry-detail {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pm-password-dots {
+    color: #444;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.pm-delete-btn {
+    background: transparent;
+    border: 1px solid #3a1a1a;
+    color: #e05c5c;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.pm-delete-btn:hover {
+    background: #2a1010;
+}
+
+.pm-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.pm-modal {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 28px;
+    width: 340px;
+}
+
+.pm-modal-title {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.pm-modal-sub {
+    color: #555;
+    font-size: 11px;
+    margin-bottom: 24px;
+}
+
+.pm-field-label {
+    color: #666;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.pm-field-input {
+    width: 100%;
+    background: #252525;
+    border: none;
+    border-bottom: 1px solid #333;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    padding: 8px 0;
+    outline: none;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+}
+
+.pm-gen-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    border-radius: 4px;
+    padding: 7px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.pm-gen-btn:hover {
+    border-color: #c8f04f;
+    color: #c8f04f;
+}
+
+.pm-modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pm-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    color: #555;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.pm-save {
+    flex: 2;
+    background: #c8f04f;
+    border: none;
+    color: #0f0f0f;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pm-save:hover {
+    background: #b0d93e;
+}
+
+.pm-wrap {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}

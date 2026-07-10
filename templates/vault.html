@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vault</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidepar">
+            <h1 class="logo name">🔒 VAULT</h1>
+            <p class="logo tagname">your passwords, encrypted</p>
+            <div class="divider"></div>
+            <button class="add-entry" onclick="document.getElementById('popup').style.display='flex'">+ Add Entry</button>
+            <div class="spacer"></div>
+             <form method="post"><button class="lock" type="submit" formaction="/lock">🔏 Lock out</button></form>
+        </aside>
+
+        <div class="rightside">
+            <input type="text" name="" id="" placeholder="search entries...">
+            <div class="rightdevider"></div>
+            <main>
+                {%for entry in entries%}
+                <div class="entry">
+                    <p class="Service">{{entry['service']}}</p>
+                    <p class="Username">{{entry['username']}}</p>
+                    <button class="copy">copy</button>
+                </div>
+                {%endfor%}
+
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque atque possimus quisquam esse totam sequi nobis necessitatibus, saepe provident nostrum. Fugiat eveniet natus quod assumenda corrupti deleniti possimus, repudiandae labore.
+
+            </main>
+        </div>
+    </div>
+    <div id="popup">
+        <div class="popupwin">
+            <h1>Add new entry</h1>
+            <p>Fill in the details for this account</p>
+            <form action="/add" method="POST">
+                <label for="">Service</label>
+                <input type="text" placeholder="Gmail" name="service">
+                <label for="">Username</label>
+                <input type="text" placeholder="example@gmail.com" name="username">
+                <label for="">Password</label>
+                <input type="password" name="password">
+                <button onclick="document.getElementById('popup').style.display='none'">generate password</button>
+                <div class="cancel-save">
+                    <button>cancel</button>
+                    <input type="submit" value="save">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
